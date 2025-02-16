@@ -1,0 +1,79 @@
+.{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+.nav-bar{
+/* position: relative; */
+   
+   /* justify-content: space-around; */
+    /* align-items:center; */
+    display: flex;
+    width:100%;
+    height:100px;
+    border: 2px solid rgb(112, 168, 29);
+    background-color: rgb(193, 133, 133);
+    color: rgba(255, 255, 255, 0.903);
+}
+
+.nav-bar a{
+  margin-left: 10px;
+margin-right: 20px;
+  
+}
+ .nav-links{
+    display: flex;
+   
+ }
+ .products{
+display: inline-block;
+    /* display: flex;
+    justify-content: space-around;
+    align-items: center; */
+    width:20%;
+    height:20px;
+  
+    background-color: rgb(207, 138, 138);
+    color: rgba(97, 194, 52, 0.712);
+ }
+ .same{
+    background-color: black;
+    /* display: inline; */
+    /* justify-content: space-around; */
+    /* align-items: center; */
+    width:100%;
+    height:200px;
+    border: 2px ;
+color: antiquewhite;
+}
+.footer{
+    
+    width:100%;
+    height:400px;
+    border: 2px solid greenyellow;
+    background-color: rgb(47, 151, 216);
+    color: rgb(255, 255, 255);
+}
+.footer2{
+    width:100%;
+    height:200px;
+    border: 2px solid greenyellow;
+    background-color: rgb(47, 151, 216);
+    color: rgb(255, 255, 255);
+}
+.apple{ border-radius: 5%;
+    border:6px solid red;
+    display: inline-block;
+}
+.play {
+    border:6px solid red;
+    display: inline-block;
+}
+.qa{
+    height: 500px;
+    background-color: rgb(89, 191, 68);
+    border:4px dotted red
+}
+.qa details{
+    margin-top: 50px;
+}
