@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="movie.css">
+</head>
+<body>
+    <h2> your favourite movie list :</h2>
+    <label for="moviename">enter your movie: </label>
+  <input type="text" id="moviename" placeholder="enter movie name">
+  <br>
+  <button id="add" onclick="addToArray()"  > add movie</button>
+  <button id="print" onclick="printArray()"> show </button>
+  <p id="output" style="color:green;
+                            font-size: 20px;
+                            font-weight: bold;">
+    </p>
+  <button id="clearlist" onclick="remove()">clear list one by one</button>
+
+  <script src="movie.js">
+  
+</script>
+</body>
+</html>
