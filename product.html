@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <div id="products-container"></div>
+    <div class="main">
+        <div class="cake">
+            <h3>Choose your favourite cake: </h3>
+            <div>
+                <div class="cake1">
+                    <img src="cake1.webp" alt="">
+                    <br>
+                    Name: Cake 1
+                    <br>
+                    Price: $10
+                    <br>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="cake1">
+                    <img src="cake2.webp" alt="">
+                    <br>
+                    Name: Cake 2
+                    <br>
+                    Price: $15
+                    <br>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="cake1">
+                    <img src="fresh-fruit-almond-cake-half-kg--110227-m.webp" alt="">
+                    <br>
+                    Name: Cake 3
+                    <br>
+                    Price: $20
+                    <br>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="cake">
+            <h3>Choose your favourite toy: </h3>
+            <div>
+                <div class="cake1">
+                    <img src="toy1.webp" alt="">
+                    <br>
+                    Name: Toy 1
+                    <br>
+                    Price: $5
+                    <br>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="cake1">
+                    <img src="toy2.jpg" alt="">
+                    <br>
+                    Name: Toy 2
+                    <br>
+                    Price: $7
+                    <br>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="cake1">
+                    <img src="toy3.webp" alt="">
+                    <br>
+                    Name: Toy 3
+                    <br>
+                    Price: $8
+                    <br>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h3>Your Cart</h3>
+        <ul id="cart-items"></ul>
+        <p>Total: $<span id="total-price">0.00</span></p>
+    </div>
+
+    <script>
+        let cart = [];
+        let totalPrice = 0;
+        const cartItemsList = document.getElementById('cart-items');
+        const totalPriceElement = document.getElementById('total-price');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+        const products = [
+            { name: 'Cake 1', price: 10, image: 'cake1.webp' },
+            { name: 'Cake 2', price: 15, image: 'cake2.webp' },
+            { name: 'Cake 3', price: 20, image: 'fresh-fruit-almond-cake-half-kg--110227-m.webp' },
+            { name: 'Toy 1', price: 5, image: 'toy1.webp' },
+            { name: 'Toy 2', price: 7, image: 'toy2.jpg' },
+            { name: 'Toy 3', price: 8, image: 'toy3.webp' }
+        ];
+
+        function updateCartUI() {
+            cartItemsList.innerHTML = '';
+
+            cart.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+                cartItemsList.appendChild(listItem);
+            });
+
+            totalPriceElement.textContent = totalPrice.toFixed(2);
+        }
+
+        function addToCart(product) {
+            cart.push(product);
+            totalPrice += product.price;
+            updateCartUI();
+        }
+
+        addToCartButtons.forEach((button, index) => {
+            button.addEventListener('click', () => addToCart(products[index]));
+        });
+
+        updateCartUI();
+    </script>
+</body>
+</html>

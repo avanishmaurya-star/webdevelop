@@ -1,0 +1,21 @@
+.cake{
+    background-color: aquamarine;
+/* display:inline-block; */
+}
+img{
+    width:200px;
+}
+.cake1{
+    background-color: antiquewhite;
+    display:inline-block;
+    border: 2px solid red;
+   padding:10px;
+}
+button{
+    background-color: red;
+    color:aquamarine
+}
+button:hover{
+   background-color: yellow;
+   box-shadow: 0 10px 10px;
+}
