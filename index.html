@@ -1,21 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  padding: 25px;
+  background-color: rgb(224, 78, 78);
+  color: black;
+  font-size: 25px;
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+#box1 {
+    width: 300px;
+    background-color: aquamarine;
+    height: 100px;
+    color: blueviolet;
+    border: 4px dotted rgb(25, 0, 255);
+}
+
+table, td {
+    border: 1px solid black;
+}
+
+#timer {
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+.timer-buttons {
+  margin-top: 20px;
+}
+
+.timer-buttons button {
+  margin: 5px;
+}
+
+.gallery img {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+#largeImage {
+  width: 300px;
+  height: 300px;
+  margin-top: 20px;
+  display: none;
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-        <img src="full-grocery-cart-35581724.webp" alt="" id="logo">
-        <div class="heading"> welcome to shoping mart</div>
-    </div>
-<div id="box1">
-<a href="product.html">product</a>
+
+<button onclick="change()">Change Box Style</button>
+<div id="box1">Welcome</div>
+
+<br><br>
+
+<button onclick="myFunction()">Toggle Dark Mode</button>
+
+<br><br>
+
+<table id="myTable">
+  <tr>
+    <td>Row1 cell1</td>
+    <td>Row1 cell2</td>
+  </tr>
+  <tr>
+    <td>Row2 cell1</td>
+    <td>Row2 cell2</td>
+  </tr>
+  <tr>
+    <td>Row3 cell1</td>
+    <td>Row3 cell2</td>
+  </tr>
+</table>
+
+<br>
+
+<button type="button" onclick="myCreateFunction()">Create Row</button>
+<button type="button" onclick="myDeleteFunction()">Delete Row</button>
+
+<br><br>
+
+<div id="timer">
+  <input type="number" id="countdownInput" placeholder="Enter seconds" />
+  <button onclick="startTimer()">Start Timer</button>
+  <div id="timeDisplay">00:00</div>
+  <div class="timer-buttons">
+    <button onclick="pauseTimer()">Pause</button>
+    <button onclick="resumeTimer()">Resume</button>
+    <button onclick="resetTimer()">Reset</button>
+  </div>
 </div>
-<img src="shop.jpeg" alt="">
-    </div>
+
+<br><br>
+
+<div class="gallery">
+  <img src="toy1.png" onclick="openImage(this)" alt="Image 1">
+  <img src="toy2.png" onclick="openImage(this)" alt="Image 2">
+  <img src="toy3.png" onclick="openImage(this)" alt="Image 3">
+</div>
+
+<img id="largeImage" src="" alt="Large Image">
+
+<script>
+let countdown;
+let timerRunning = false;
+let timeLeft = 0;
+let interval;
+
+function myCreateFunction() {
+  var table = document.getElementById("myTable");
+  var row = table.insertRow(0);
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  cell1.innerHTML = "NEW CELL1";
+  cell2.innerHTML = "NEW CELL2";
+}
+
+function myDeleteFunction() {
+  document.getElementById("myTable").deleteRow(0);
+}
+
+function change() {
+  document.getElementById("box1").style.border = "thick solid #0000FF";
+  document.getElementById("box1").style.color = "red";
+  document.getElementById("box1").style.backgroundColor = "yellow";
+}
+
+function myFunction() {
+  var element = document.body;
+  element.classList.toggle("dark-mode");
+}
+
+function startTimer() {
+  const inputSeconds = parseInt(document.getElementById("countdownInput").value, 10);
+  if (isNaN(inputSeconds) || inputSeconds <= 0) {
+    alert("Please enter a valid number of seconds.");
+    return;
+  }
+
+  timeLeft = inputSeconds;
+  timerRunning = true;
+  updateTimeDisplay();
+  clearInterval(interval);
+  interval = setInterval(updateTime, 1000);
+}
+
+function updateTime() {
+  if (timeLeft <= 0) {
+    clearInterval(interval);
+    alert("Time's up!");
+    return;
+  }
+  
+  timeLeft--;
+  updateTimeDisplay();
+}
+
+function updateTimeDisplay() {
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  document.getElementById("timeDisplay").textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  
+  if (timeLeft > 10) {
+    document.body.style.backgroundColor = "green";
+  } else if (timeLeft <= 10 && timeLeft > 5) {
+    document.body.style.backgroundColor = "yellow";
+  } else {
+    document.body.style.backgroundColor = "red";
+  }
+}
+
+function pauseTimer() {
+  clearInterval(interval);
+  timerRunning = false;
+}
+
+function resumeTimer() {
+  if (timerRunning) return;
+  timerRunning = true;
+  interval = setInterval(updateTime, 1000);
+}
+
+function resetTimer() {
+  clearInterval(interval);
+  timerRunning = false;
+  timeLeft = 0;
+  document.getElementById("timeDisplay").textContent = "00:00";
+  document.body.style.backgroundColor = "rgb(224, 78, 78)";
+}
+
+function openImage(img) {
+  const largeImage = document.getElementById("largeImage");
+  largeImage.src = img.src;
+  largeImage.style.display = "block";
+}
+</script>
+
 </body>
 </html>
