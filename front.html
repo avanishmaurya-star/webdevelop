@@ -3,78 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Interactive Web Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            transition: background 0.3s, color 0.3s;
+            background: #f4f4f4;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        .dark-mode {
+            background: #222;
+            color: #fff;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .timer {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .gallery img {
+            width: 100px;
+            cursor: pointer;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .large-img {
+            width: 300px;
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #007bff;
+            color: white;
+        }
+        .dark-mode th {
+            background: #0056b3;
+        }
+    </style>
 </head>
 <body>
+    <button onclick="toggleTheme()">Toggle Dark Mode</button>
     
-    <header>
-        <nav class="nav-bar">
-          <a href="">blog world</a>
-<button class="products" role="menuitem" data-dropdown-trigger="products"> <a href="">products</a> </button>
-<button class="products" role="menuitem" data-dropdown-trigger="products"> <a href="">features</a> </button>
-<button class="products" role="menuitem" data-dropdown-trigger="products"> <a href="">resources</a> </button>
-<button class="products" role="menuitem" data-dropdown-trigger="products"> <a href="">plan and pricing</a> </button>
-<a href="">login</a>
-<a href="">get started</a>
-        </nav>
-    </header>
-        <div class="same">
-            <h1> Blog with the best.</h1>
-            <p> More bloggers and independent creators choose WordPress than any other blogging tool. Tap into intuitive, flexible tools that put writers, bloggers, and creators first.</p>
-           <div > <button class="get-started">Get started</button></div>
-        </div>
-            <span>
-                <video src="https://wpcom.files.wordpress.com/2024/07/lohp-editor-video-500kbps.mp4" autoplay loop muted playsinline preload="metadata" width="1250" height="800"> </video>
-             </span>
-        </div>
-     
-      <section>
-        <div class="qa">
-            <h1> you asked ,we answered</h1>
-           
-           <div>
-            <details>
-                <summary>Why should I use WordPress?</summary>
-                <p>WordPress is the most popular blogging tool in the world. It’s used by millions of people to create blogs and websites. It’s easy to use and flexible enough to make just about any kind of site you can imagine.</p>
-              </details>
-            </div>
-            <div>
-              <details>
-                <summary>How do I get started with WordPress?</summary>
-                <p>Getting started with WordPress is easy. Just click the button on this page and follow the instructions. You’ll be up and running in no time.</p>
-              </details>
-            </div>
-            <div>
-              <details>
-                <summary>What are the benefits of using WordPress?</summary>
-                <p>WordPress is a powerful tool that can help you create a blog or website that looks great and works well. It’s easy to use, flexible, and has a large community of users who can help you if you get stuck.</p>
-              </details>
-            </div>
-            <div>
-              <details>
-                <summary>How much does WordPress cost?</summary>
-                <p>WordPress is free to use. You can create a blog or website without paying anything. If you want to use some of the more advanced features, you may need to pay for a premium plan.</p>
-            </details>
-        </div>
-        </div>
-      </section>
-        <div class="footer">
-            <div class="footer1">
-               <h1>join the millions of creators</h1>
-               <h1>and bloggers who trust WordPress</h1>
-               <h3>Build your blog—and your audience—with the same tool that powers almost half the web. Built on lightning-fast, seriously secure, hassle-free hosting. That’s WordPress.com. </h3>
-            </div>
-            <div class="footer2">
-                <div class="apple">
-<img src="apple.jpeg" alt="">
-                   
-                </div>
-                <div class="play ">
-                    <img src="playicon.jpeg" alt="playstore" width="50px" height="50px">
-                    <h3> get it on</h3>
-                    <h2> google play</h2>
-                </div>
-   
+    <h2>Countdown Timer</h2>
+    <input type="number" id="timeInput" placeholder="Enter seconds">
+    <button onclick="startTimer()">Start</button>
+    <button onclick="pauseTimer()">Pause</button>
+    <button onclick="resetTimer()">Reset</button>
+    <div id="timer" class="timer">00:00</div>
+    
+    <h2>Change Style</h2>
+    <button onclick="changeStyle()">Change Style</button>
+    <p id="styleText">This text will change style!</p>
+    
+    <h2>List Operations</h2>
+    <ul id="list">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Apple</li>
+        <li>Orange</li>
+    </ul>
+    <button onclick="sortList()">Sort</button>
+    <button onclick="removeDuplicates()">Remove Duplicates</button>
+    <button onclick="reverseList()">Reverse</button>
+    
+    <h2>Dynamic Table</h2>
+    <input type="text" id="rowData" placeholder="Enter Data">
+    <button onclick="addRow()">Add Row</button>
+    <table id="dataTable">
+        <tr><th>Data</th><th>Action</th></tr>
+    </table>
+    
+    <h2>Image Gallery</h2>
+    <div class="gallery">
+        <img src="anand.jpg" onclick="showLarge(this)">
+        <img src="chandra-shekhar-azad-park-prayagraj.jpg" onclick="showLarge(this)">
+        <img src="kumbh.jpg" onclick="showLarge(this)">
+    </div>
+    <img id="largeImage" class="large-img" src="" style="display: none;">
+    
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle("dark-mode");
+        }
+        
+        let timer;
+        let timeLeft;
+        function startTimer() {
+            timeLeft = document.getElementById("timeInput").value;
+            updateTimerDisplay();
+            timer = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                if (timeLeft <= 0) clearInterval(timer);
+            }, 1000);
+        }
+        function pauseTimer() { clearInterval(timer); }
+        function resetTimer() { clearInterval(timer); document.getElementById("timer").innerText = "00:00"; }
+        function updateTimerDisplay() {
+            let timerDisplay = document.getElementById("timer");
+            timerDisplay.innerText = `00:${timeLeft}`;
+            timerDisplay.style.color = timeLeft > 10 ? "green" : timeLeft > 5 ? "yellow" : "red";
+        }
+        
+        function changeStyle() {
+            document.getElementById("styleText").style.color = "blue";
+            document.getElementById("styleText").style.fontSize = "20px";
+        }
+        
+        function sortList() {
+            let list = document.getElementById("list");
+            let items = Array.from(list.getElementsByTagName("li"));
+            items.sort((a, b) => a.innerText.localeCompare(b.innerText));
+            list.innerHTML = "";
+            items.forEach(item => list.appendChild(item));
+        }
+        function removeDuplicates() {
+            let list = document.getElementById("list");
+            let items = Array.from(new Set([...list.getElementsByTagName("li")].map(li => li.innerText)));
+            list.innerHTML = "";
+            items.forEach(text => { let li = document.createElement("li"); li.innerText = text; list.appendChild(li); });
+        }
+        function reverseList() {
+            let list = document.getElementById("list");
+            let items = Array.from(list.getElementsByTagName("li"));
+            list.innerHTML = "";
+            items.reverse().forEach(item => list.appendChild(item));
+        }
+        
+        function addRow() {
+            let table = document.getElementById("dataTable");
+            let row = table.insertRow();
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+            cell1.innerText = document.getElementById("rowData").value;
+            let btn = document.createElement("button");
+            btn.innerText = "Delete";
+            btn.onclick = () => row.remove();
+            cell2.appendChild(btn);
+        }
+        
+        function showLarge(img) {
+            let largeImg = document.getElementById("largeImage");
+            largeImg.src = img.src;
+            largeImg.style.display = "block";
+        }
+    </script>
 </body>
 </html>
